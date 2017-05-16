@@ -119,6 +119,10 @@ class OnlineHelp(OnlineHelpTopic):
         "See zope.app.onlineHelp.interfaces.IOnlineHelp"
 
         if not os.path.exists(doc_path):
+            if doc_path.endswith('.txt') and os.path.exists(doc_path[:-4] + '.rst'):
+                doc_path = doc_path[:-4] + '.rst'
+
+        if not os.path.exists(doc_path):
             raise ConfigurationError(
                 "Help Topic definition %s does not exist" % doc_path
             )
