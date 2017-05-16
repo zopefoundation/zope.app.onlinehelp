@@ -12,28 +12,22 @@
 #
 ##############################################################################
 """`OnlineHelp` views
-
-$Id$
 """
 __docformat__ = 'restructuredtext'
 
 from zope.component import createObject, getMultiAdapter
-from zope.security.proxy import removeSecurityProxy
+
 from zope.publisher.browser import BrowserView
 from zope.publisher.interfaces.browser import IBrowserView
 from zope.traversing.api import getName, getParent
 
 from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
 
-from zope.app.onlinehelp.interfaces import IOnlineHelpTopic, IOnlineHelp
 from zope.app.onlinehelp import getTopicFor
 
 
 class OnlineHelpTopicView(BrowserView):
     """View for one particular help topic."""
-
-    def __init__(self, context, request):
-        super(OnlineHelpTopicView, self).__init__(context, request)
 
     def topicContent(self):
         """ render the source of the help topic """
@@ -47,9 +41,6 @@ class OnlineHelpTopicView(BrowserView):
 
 class ZPTOnlineHelpTopicView(BrowserView):
     """View for a page template based help topic."""
-
-    def __init__(self, context, request):
-        super(ZPTOnlineHelpTopicView, self).__init__(context, request)
 
     def renderTopic(self):
         """Render the registred topic."""

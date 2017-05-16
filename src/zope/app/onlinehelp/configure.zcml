@@ -64,16 +64,16 @@
 
   <!-- Help Namespace Configuration -->
   <view
-      name="help" 
+      name="help"
       type="*"
-      provides="zope.traversing.interfaces.ITraversable" 
+      provides="zope.traversing.interfaces.ITraversable"
       for="*"
       factory=".helpNamespace"
       />
 
   <adapter
       name="help"
-      provides="zope.traversing.interfaces.ITraversable" 
+      provides="zope.traversing.interfaces.ITraversable"
       for="*"
       factory=".helpNamespace"
       />

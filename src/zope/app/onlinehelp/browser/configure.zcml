@@ -1,4 +1,4 @@
-<zope:configure 
+<zope:configure
   xmlns:zope="http://namespaces.zope.org/zope"
   xmlns="http://namespaces.zope.org/browser"
   i18n_domain="zope"
@@ -40,7 +40,7 @@
   <page
       name="contexthelp.html"
       for="zope.app.onlinehelp.interfaces.IOnlineHelp"
-      class=".ContextHelpView" 
+      class=".ContextHelpView"
       permission="zope.View"
       attribute="getContextualTopicView"
       />
@@ -54,33 +54,33 @@
       />
 
   <!-- resources for onlinhelp -->
-  <resource 
-      name="onlinehelp.css" 
+  <resource
+      name="onlinehelp.css"
       file="onlinehelp.css"
       />
 
-  <resource 
-      name="tree.css" 
+  <resource
+      name="tree.css"
       file="tree.css"
       />
 
-  <resource 
-      name="tree.js" 
+  <resource
+      name="tree.js"
       file="tree.js"
       />
 
-  <resource 
-      name="minus.gif" 
+  <resource
+      name="minus.gif"
       file="minus.gif"
       />
 
-  <resource 
-      name="plus.gif" 
+  <resource
+      name="plus.gif"
       file="plus.gif"
       />
 
-  <resource 
-      name="item.gif" 
+  <resource
+      name="item.gif"
       file="item.gif"
       />
 
@@ -97,5 +97,5 @@
       permission="zope.View"
       template="onlinehelp_navigation_macros.pt"
       />
- 
+
 </zope:configure>
