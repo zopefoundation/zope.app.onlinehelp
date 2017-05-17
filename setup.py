@@ -78,9 +78,7 @@ setup(name='zope.app.onlinehelp',
           'zope.location',
           'zope.publisher >= 4.3.1',
           'zope.schema',
-          # XXX: Really need 4.1.1 for downstream to work
-          # correctly. See https://github.com/zopefoundation/zope.security/pull/24
-          'zope.security >= 4.1.0',
+          'zope.security >= 4.1.1',
           'zope.testing',
           'zope.traversing',
       ],
