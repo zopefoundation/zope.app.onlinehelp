@@ -16,14 +16,13 @@
 This is the default implementation of the `OnlineHelp`. It defines the global
 `OnlineHelp` in which all basic Zope-core help screens are registered.
 
-$Id$
 """
 __docformat__ = 'restructuredtext'
 
 import os
 
 from zope.component import getGlobalSiteManager, getUtilitiesFor
-from zope.interface import implements
+from zope.interface import implementer
 from zope.configuration.exceptions import ConfigurationError
 from zope.traversing.interfaces import IContainmentRoot
 from zope.traversing.api import traverse
@@ -31,6 +30,7 @@ from zope.traversing.api import traverse
 from zope.app.onlinehelp.interfaces import IOnlineHelp, IOnlineHelpTopic
 from zope.app.onlinehelp.onlinehelptopic import OnlineHelpTopic
 
+@implementer(IOnlineHelp, IContainmentRoot)
 class OnlineHelp(OnlineHelpTopic):
     """
     >>> import os
@@ -109,10 +109,9 @@ class OnlineHelp(OnlineHelpTopic):
     True
 
     """
-    implements(IOnlineHelp, IContainmentRoot)
 
     def __init__(self, title, path):
-        super(OnlineHelp, self).__init__('',title, path, None)
+        super(OnlineHelp, self).__init__('', title, path, None)
 
     def registerHelpTopic(self, parent_path, id, title,
                           doc_path, interface=None, view=None,
@@ -120,9 +119,13 @@ class OnlineHelp(OnlineHelpTopic):
         "See zope.app.onlineHelp.interfaces.IOnlineHelp"
 
         if not os.path.exists(doc_path):
+            if doc_path.endswith('.txt') and os.path.exists(doc_path[:-4] + '.rst'):
+                doc_path = doc_path[:-4] + '.rst'
+
+        if not os.path.exists(doc_path):
             raise ConfigurationError(
                 "Help Topic definition %s does not exist" % doc_path
-                )
+            )
 
         if class_ is None:
             class_ = OnlineHelpTopic

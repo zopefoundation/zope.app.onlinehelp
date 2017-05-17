@@ -18,69 +18,94 @@
 ##############################################################################
 """Setup for zope.app.onlinehelp package
 
-$Id$
 """
 import os
 from setuptools import setup, find_packages
 
 def read(*rnames):
-    return open(os.path.join(os.path.dirname(__file__), *rnames)).read()
+    with open(os.path.join(os.path.dirname(__file__), *rnames)) as f:
+        return f.read()
 
-setup(name = 'zope.app.onlinehelp',
-      version = '3.5.3dev',
+setup(name='zope.app.onlinehelp',
+      version='4.0.0.dev0',
       author='Zope Corporation and Contributors',
       author_email='zope-dev@zope.org',
       description='Framework for Context-Sensitive Help Pages',
       long_description=(
-          read('README.txt')
+          read('README.rst')
           + '\n\n' +
-          read('CHANGES.txt')
+          read('CHANGES.rst')
           ),
-      keywords = "zope3 online help",
-      classifiers = [
+      keywords="zope3 online help",
+      classifiers=[
           'Development Status :: 5 - Production/Stable',
           'Environment :: Web Environment',
           'Intended Audience :: Developers',
           'License :: OSI Approved :: Zope Public License',
           'Programming Language :: Python',
+          'Programming Language :: Python :: 2',
+          'Programming Language :: Python :: 2.7',
+          'Programming Language :: Python :: 3',
+          'Programming Language :: Python :: 3.4',
+          'Programming Language :: Python :: 3.5',
+          'Programming Language :: Python :: 3.6',
+          'Programming Language :: Python :: Implementation :: CPython',
+          'Programming Language :: Python :: Implementation :: PyPy',
           'Natural Language :: English',
           'Operating System :: OS Independent',
           'Topic :: Internet :: WWW/HTTP',
-          'Framework :: Zope3'],
-      url='http://pypi.python.org/pypi/zope.app.onlinehelp',
+          'Framework :: Zope3',
+      ],
+      url='http://github.com/zopefoundation/zope.app.onlinehelp',
       license='ZPL 2.1',
       packages=find_packages('src'),
-      package_dir = {'': 'src'},
+      package_dir={'': 'src'},
       namespace_packages=['zope', 'zope.app'],
-      install_requires = ['setuptools',
-                          'ZODB3',
-                          'zope.app.component',
-                          'zope.app.file',
-                          'zope.app.pagetemplate',
-                          'zope.app.publication',
-                          'zope.app.security',
-                          'zope.app.testing',
-                          'zope.component',
-                          'zope.configuration',
-                          'zope.container',
-                          'zope.contenttype',
-                          'zope.i18n',
-                          'zope.interface',
-                          'zope.location',
-                          'zope.publisher >= 3.12',
-                          'zope.schema',
-                          'zope.security',
-                          'zope.testing',
-                          'zope.traversing',
-                          ],
-      extras_require = dict(test=['zope.app.testing',
-                                  'zope.app.preference',
-                                  'zope.app.apidoc',
-                                  'zope.site',
-                                  'zope.login',
-                                  'zope.app.securitypolicy',
-                                  'zope.app.zcmlfiles',
-                                  'zope.securitypolicy']),
-      include_package_data = True,
-      zip_safe = False,
-      )
+      install_requires=[
+          'persistent',
+          'setuptools',
+          'zope.app.component',
+          'zope.app.file >= 4.0.0',
+          'zope.app.pagetemplate >= 4.0.0',
+          'zope.app.publication >= 4.2.1',
+          'zope.app.security >= 4.0.0',
+          'zope.component',
+          'zope.configuration',
+          'zope.container',
+          'zope.contenttype',
+          'zope.i18n',
+          'zope.interface',
+          'zope.location',
+          'zope.publisher >= 4.3.1',
+          'zope.schema',
+          'zope.security >= 4.1.1',
+          'zope.testing',
+          'zope.traversing',
+      ],
+      extras_require={
+          'test': [
+              'webtest',
+              'zope.app.basicskin >= 4.0.0',
+              'zope.app.folder',
+              'zope.app.http',
+              'zope.app.principalannotation',
+              'zope.app.preference >= 4.0.0',
+              'zope.app.renderer >= 4.0.0',
+              'zope.app.rotterdam >= 4.0.0',
+              'zope.app.securitypolicy',
+              'zope.app.wsgi',
+              'zope.annotation',
+              'zope.copypastemove',
+              'zope.configuration',
+              'zope.formlib',
+              'zope.login',
+              'zope.principalannotation',
+              'zope.securitypolicy',
+              'zope.site',
+              'zope.testing',
+              'zope.testrunner',
+          ],
+      },
+      include_package_data=True,
+      zip_safe=False,
+)

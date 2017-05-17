@@ -13,19 +13,15 @@
 ##############################################################################
 """Onlinehelp test utilities
 
-$Id$
 """
 import os
 import zope.app.onlinehelp.tests
 
-dir = os.path.dirname(zope.app.onlinehelp.tests.__file__)
-input_dir = os.path.join(dir, 'input')
-output_dir = os.path.join(dir, 'output')
-
-def read_input(filename):
-    filename = os.path.join(input_dir, filename)
-    return open(filename, 'r').read()
+here = os.path.dirname(zope.app.onlinehelp.tests.__file__)
+input_dir = os.path.join(here, 'input')
+output_dir = os.path.join(here, 'output')
 
 def read_output(filename):
     filename = os.path.join(output_dir, filename)
-    return open(filename, 'r').read()
+    with open(filename, 'r') as f:
+        return f.read()

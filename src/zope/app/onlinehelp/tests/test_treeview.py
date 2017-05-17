@@ -13,18 +13,17 @@
 ##############################################################################
 """Onlinehelp tree view Tests
 
-$Id$
 """
 import os
 
-from unittest import TestCase, TestLoader, TextTestRunner
+import unittest
 
 from zope import component
 from zope.pagetemplate.tests.util import check_xml
 from zope.publisher.browser import TestRequest
 from zope.app.component.testing import PlacefulSetup
 from zope.app.onlinehelp.tests import util
-from zope.app.onlinehelp.interfaces import IOnlineHelp, IOnlineHelpTopic
+from zope.app.onlinehelp.interfaces import IOnlineHelp
 from zope.app.onlinehelp.onlinehelp import OnlineHelp
 from zope.app.onlinehelp.onlinehelptopic import OnlineHelpTopic
 from zope.app.onlinehelp.browser.tree import OnlineHelpTopicTreeView
@@ -35,8 +34,8 @@ def testdir():
     return os.path.dirname(zope.app.onlinehelp.tests.__file__)
 
 
-class TestOnlineHelpTopicTreeView(PlacefulSetup, TestCase):
-    
+class TestOnlineHelpTopicTreeView(PlacefulSetup, unittest.TestCase):
+
     def setUp(self):
         PlacefulSetup.setUp(self, site=True)
         path = os.path.join(testdir(), 'help.txt')
@@ -50,7 +49,7 @@ class TestOnlineHelpTopicTreeView(PlacefulSetup, TestCase):
 
     def test_topics(self):
         path = os.path.join(testdir(), 'help.txt')
-        
+
         id = 'topic1'
         title = 'Topic1'
         parentPath = ""
@@ -74,15 +73,14 @@ class TestOnlineHelpTopicTreeView(PlacefulSetup, TestCase):
         parentPath = ""
         topic2 = OnlineHelpTopic(id, title, path, parentPath)
         self.onlinehelp['topic2'] = topic2
-        
+
         view = OnlineHelpTopicTreeView
         treeView = view(self.rootFolder, TestRequest()).getTopicTree
         check_xml(treeView(), util.read_output('test2.xml'))
 
 
 def test_suite():
-    loader = TestLoader()
-    return loader.loadTestsFromTestCase(TestOnlineHelpTopicTreeView)
+    return unittest.defaultTestLoader.loadTestsFromName(__name__)
 
-if __name__=='__main__':
-    TextTestRunner().run(test_suite())
+if __name__ == '__main__':
+    unittest.main()

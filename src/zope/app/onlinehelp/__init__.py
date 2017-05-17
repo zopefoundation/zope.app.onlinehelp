@@ -15,7 +15,6 @@
 
 Create the global `OnlineHelp` instance.
 
-$Id$
 """
 __docformat__ = 'restructuredtext'
 
@@ -26,8 +25,8 @@ from zope.component import getUtilitiesFor
 from zope.interface import providedBy
 from zope.testing import cleanup
 
-from interfaces import IOnlineHelpTopic
-from onlinehelp import OnlineHelp
+from zope.app.onlinehelp.interfaces import IOnlineHelpTopic
+from zope.app.onlinehelp.onlinehelp import OnlineHelp
 
 
 # Global Online Help Instance
@@ -61,9 +60,9 @@ def getTopicFor(obj, view=None):
     Prepare the tests:
 
     >>> import os
-    >>> from tests.test_onlinehelp import testdir
-    >>> from tests.test_onlinehelp import I1, Dummy1, Dummy2
-    >>> from zope.app.testing import ztapi
+    >>> from zope.app.onlinehelp.tests.test_onlinehelp import testdir
+    >>> from zope.app.onlinehelp.tests.test_onlinehelp import I1, Dummy1, Dummy2
+    >>> from zope.app.onlinehelp import tests as ztapi
     >>> from zope.component.interfaces import IFactory
     >>> from zope.component.factory import Factory
     >>> from zope.app.onlinehelp.onlinehelptopic import OnlineHelpTopic

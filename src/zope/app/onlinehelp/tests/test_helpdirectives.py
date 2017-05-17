@@ -13,7 +13,6 @@
 ##############################################################################
 """Test the gts ZCML namespace directives.
 
-$Id$
 """
 import unittest
 
@@ -22,30 +21,29 @@ from zope.configuration import xmlconfig
 from zope.configuration.xmlconfig import XMLConfig
 from zope.component.interfaces import IFactory
 from zope.component.factory import Factory
-from zope.traversing.interfaces import IPhysicallyLocatable
-from zope.traversing.interfaces import ITraverser, ITraversable
-from zope.traversing.adapters import Traverser, DefaultTraversable
-from zope.location.traversing import LocationPhysicallyLocatable
 from zope.security.interfaces import IPermission
 from zope.security.permission import Permission
 
+import zope.traversing
 import zope.app.component
 import zope.app.security
 import zope.app.onlinehelp
 from zope.app.onlinehelp import tests
+ztapi = tests
 from zope.app.onlinehelp import globalhelp
 from zope.app.onlinehelp.onlinehelptopic import OnlineHelpTopic
 from zope.app.onlinehelp.onlinehelptopic import RESTOnlineHelpTopic
 from zope.app.onlinehelp.onlinehelptopic import STXOnlineHelpTopic
 from zope.app.onlinehelp.onlinehelptopic import ZPTOnlineHelpTopic
-from zope.app.testing import ztapi, placelesssetup
+
+from zope.component import testing
 
 
 class I1(Interface):
     pass
 
 
-class DirectivesTest(placelesssetup.PlacelessSetup, unittest.TestCase):
+class DirectivesTest(testing.PlacelessSetup, unittest.TestCase):
 
     def setUp(self):
         super(DirectivesTest, self).setUp()
@@ -54,10 +52,7 @@ class DirectivesTest(placelesssetup.PlacelessSetup, unittest.TestCase):
         XMLConfig('meta.zcml', zope.app.security)()
         XMLConfig('meta.zcml', zope.app.component)()
         XMLConfig('meta.zcml', zope.app.onlinehelp)()
-        ztapi.provideAdapter(None, ITraverser, Traverser)
-        ztapi.provideAdapter(None, ITraversable, DefaultTraversable)
-        ztapi.provideAdapter(None, IPhysicallyLocatable,
-                             LocationPhysicallyLocatable)
+        XMLConfig('configure.zcml', zope.traversing)
 
         default = Factory(OnlineHelpTopic)
         rest = Factory(RESTOnlineHelpTopic)
@@ -69,20 +64,18 @@ class DirectivesTest(placelesssetup.PlacelessSetup, unittest.TestCase):
         ztapi.provideUtility(IFactory, zpt, 'onlinehelp.topic.zpt')
 
     def test_register(self):
-        self.assertEqual(globalhelp.keys(), [])
+        self.assertEqual(list(globalhelp.keys()), [])
         XMLConfig('help.zcml', tests)()
         res = [u'help4', u'help5', u'help2', u'help3', u'help1']
         res.sort()
-        helpList = globalhelp.keys()
-        helpList.sort()
+
+        helpList = sorted(globalhelp.keys())
         self.assertEqual(helpList, res)
         topic = globalhelp['help1']
-        self.assert_('test1.png' in topic.keys())
+        self.assertIn('test1.png', topic.keys())
 
 def test_suite():
-    return unittest.TestSuite((
-        unittest.makeSuite(DirectivesTest),
-        ))
+    return unittest.defaultTestLoader.loadTestsFromName(__name__)
 
 if __name__ == '__main__':
     unittest.main()

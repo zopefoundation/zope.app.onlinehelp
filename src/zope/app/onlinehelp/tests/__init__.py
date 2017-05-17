@@ -13,5 +13,9 @@
 ##############################################################################
 """Test Directory
 
-$Id$
 """
+
+from zope import component
+
+def provideUtility(provides, comp, name):
+    component.provideUtility(comp, provides, name)

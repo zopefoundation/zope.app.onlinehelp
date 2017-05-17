@@ -12,13 +12,11 @@
 #
 ##############################################################################
 """Schemas for the ``help`` ZCML namespace
-
-$Id$
 """
 __docformat__ = 'restructuredtext'
 
 from zope.interface import Interface
-from zope.schema import BytesLine, TextLine
+from zope.schema import NativeStringLine, TextLine
 from zope.configuration.fields import GlobalInterface, GlobalObject
 from zope.configuration.fields import Path, MessageID, Tokens
 
@@ -29,7 +27,7 @@ class IOnlineHelpTopicDirective(Interface):
     Optionally you can register a topic for a component and view.
     """
 
-    id = BytesLine(
+    id = NativeStringLine(
         title=u"Topic Id",
         description=u"Id of the topic as it will appear in the URL.",
         required=True)
@@ -39,7 +37,7 @@ class IOnlineHelpTopicDirective(Interface):
         description=u"Provides a title for the online Help Topic.",
         required=True)
 
-    parent = BytesLine(
+    parent = NativeStringLine(
         title=u"Parent Topic",
         description=u"Id of the parent topic.",
         default="",
@@ -51,7 +49,7 @@ class IOnlineHelpTopicDirective(Interface):
         default=None,
         required=False)
 
-    view = BytesLine(
+    view = NativeStringLine(
         title=u"View Name",
         description=u"The view name for which this Help Topic is registered.",
         default="",
