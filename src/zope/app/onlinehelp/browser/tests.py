@@ -135,19 +135,25 @@ class TestZPT(unittest.TestCase):
         from zope.location.interfaces import LocationError
         from zope.app.rotterdam import Rotterdam
         from zope.publisher.skinnable import applySkin
+
         class Context(object):
             path = os.path.join(os.path.dirname(__file__),
                                 'helptopic.pt')
             title = 'title'
+
         request = TestRequest()
         applySkin(request, Rotterdam)
+
+        # Normally these are used for IZPTOnlineHelpTopic objects,
+        # which have a `path` attribute to a custom template file.
+        # We're going to use it with `helptopic.pt`, which is a template
+        # used for OnlineHelpTopic objects and won't work for us:
         zpt = ZPTOnlineHelpTopicView(Context, request)
         with self.assertRaises(LocationError) as e:
             zpt.renderTopic()
-        # XXX: How is this supposed to normally get a topicContent
-        # that can be traversed to?
         self.assertEqual(e.exception.args[1], 'topicContent')
 
+        # We have to assign a 'topicContent' to be able to use that template:
         zpt.topicContent = "the topic text"
         zpt.renderTopic()
 
