@@ -5,7 +5,8 @@
 4.0.1 (unreleased)
 ==================
 
-- Nothing changed yet.
+- Drop test dependency on ``zope.app.securitypolicy``. It wasn't used,
+  and it isn't yet fully ported to Python 3.
 
 
 4.0.0 (2017-05-17)
