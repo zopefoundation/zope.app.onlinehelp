@@ -10,6 +10,10 @@
   thread-safe. See `issue 4
   <https://github.com/zopefoundation/zope.app.onlinehelp/issues/4>`_.
 
+- ``getTopicFor`` now really returns the first found topic in the
+  event that the object implements multiple interfaces that have
+  registered topics for the given view. Previously it would return the
+  topic for the least-specific interface.
 
 4.0.1 (2017-05-21)
 ==================

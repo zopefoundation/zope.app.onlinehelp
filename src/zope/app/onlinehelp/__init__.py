@@ -137,12 +137,43 @@ def getTopicFor(obj, view=None):
     >>> getTopicFor(Dummy2()) is None
     True
 
+    If there is a second interface also provided with the same
+    view name and registered for that interface, still only the first
+    topic will be found.
+
+    >>> from zope.interface import Interface, implementer, alsoProvides
+    >>> class I3(Interface):
+    ...     pass
+    >>> @implementer(I3)
+    ... class Dummy3(object):
+    ...     pass
+
+    >>> path = os.path.join(testdir(), 'help2.txt')
+    >>> onlinehelp.registerHelpTopic('a', 'help3', 'Help 3',
+    ...     path, I3, None)
+
+    >>> getTopicFor(Dummy3()).title
+    'Help 3'
+    >>> getTopicFor(Dummy1()).title
+    'Help 2'
+
+    >>> @implementer(I1, I3)
+    ... class Dummy4(object):
+    ...     pass
+    >>> getTopicFor(Dummy4()).title
+    'Help 2'
+
+    >>> @implementer(I3, I1)
+    ... class Dummy5(object):
+    ...     pass
+    >>> getTopicFor(Dummy5()).title
+    'Help 3'
+
     """
     for interface in providedBy(obj):
         for _name, topic in getUtilitiesFor(IOnlineHelpTopic):
             if topic.interface == interface and topic.view == view:
                 return topic
-
 
 def _clear():
     globalhelp.__init__(globalhelp.title, globalhelp.path)
