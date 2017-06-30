@@ -2,10 +2,13 @@
  CHANGES
 =========
 
-4.0.2 (unreleased)
+4.1.0 (unreleased)
 ==================
 
-- Nothing changed yet.
+- The help namespace no longer modifies the global help object on
+  traversal. Instead it returns a new proxy object. This makes it
+  thread-safe. See `issue 4
+  <https://github.com/zopefoundation/zope.app.onlinehelp/issues/4>`_.
 
 
 4.0.1 (2017-05-21)

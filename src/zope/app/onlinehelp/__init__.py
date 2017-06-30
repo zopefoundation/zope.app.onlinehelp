@@ -20,9 +20,10 @@ __docformat__ = 'restructuredtext'
 
 import os
 
-import zope
 from zope.component import getUtilitiesFor
 from zope.interface import providedBy
+from zope.proxy import ProxyBase
+from zope.proxy import non_overridable
 from zope.testing import cleanup
 
 from zope.app.onlinehelp.interfaces import IOnlineHelpTopic
@@ -34,6 +35,25 @@ path = os.path.join(os.path.dirname(__file__),
                       'help', 'welcome.stx')
 globalhelp = OnlineHelp('Online Help', path)
 
+class _TraversedOnlineHelpProxy(ProxyBase):
+    """
+    A proxy around the globalhelp object that is returned when we
+    traverse through the helpNamespace.
+
+    It adds the ``context`` attribute to the context that was traversed
+    through.
+    """
+    __slots__ = ('context',)
+
+    def __init__(self, context):
+        self.context = context
+        ProxyBase.__init__(self, globalhelp)
+
+    @non_overridable
+    def __reduce__(self, proto=None):
+        raise TypeError("Not picklable")
+    __reduce_ex__ = __reduce__
+
 
 class helpNamespace(object):
     """ help namespace handler """
@@ -42,12 +62,14 @@ class helpNamespace(object):
         self.context = context
 
     def traverse(self, name, ignored):
-        """Used to traverse to an online help topic.
-        Returns the global `OnlineHelp` instance with the traversal
-        context.
         """
-        globalhelp.context = self.context
-        return globalhelp
+        Used to traverse to an online help topic.
+
+        Returns a proxy for the global :class::`~.OnlineHelp` instance
+        with the traversal context.
+        """
+        return _TraversedOnlineHelpProxy(self.context)
+
 
 def getTopicFor(obj, view=None):
     """Determine topic for an object and optionally a view.
@@ -116,18 +138,13 @@ def getTopicFor(obj, view=None):
     True
 
     """
-    topic = None
     for interface in providedBy(obj):
-        for t in getUtilitiesFor(IOnlineHelpTopic):
-            if t[1].interface==interface and t[1].view==view:
-                topic = t[1]
-                break
-
-    return topic
+        for _name, topic in getUtilitiesFor(IOnlineHelpTopic):
+            if topic.interface == interface and topic.view == view:
+                return topic
 
 
 def _clear():
-    global globalhelp
     globalhelp.__init__(globalhelp.title, globalhelp.path)
 
 

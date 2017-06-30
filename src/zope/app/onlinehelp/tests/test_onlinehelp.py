@@ -70,9 +70,27 @@ class TestOnlineHelp(unittest.TestCase):
             'path that does not exist')
 
 
+class TestOnlineHelpNamespace(unittest.TestCase):
+
+    def test_context(self):
+        from zope.app.onlinehelp import globalhelp
+        from zope.app.onlinehelp import helpNamespace
+
+        traversed = helpNamespace(self).traverse(None, None)
+        self.assertIs(traversed.context, self)
+        self.assertIsNone(getattr(globalhelp, 'context', None))
+
+    def test_cannot_pickle(self):
+        from zope.app.onlinehelp import helpNamespace
+        import pickle
+
+        traversed = helpNamespace(self).traverse(None, None)
+        self.assertRaises(TypeError,
+                          pickle.dumps, traversed)
+
+
 def testdir():
-    import zope.app.onlinehelp.tests
-    return os.path.dirname(zope.app.onlinehelp.tests.__file__)
+    return os.path.dirname(__file__)
 
 def setUp(tests):
     testing.setUp()

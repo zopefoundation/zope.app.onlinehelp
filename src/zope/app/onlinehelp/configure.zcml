@@ -14,6 +14,11 @@
         />
   </class>
 
+  <class class="._TraversedOnlineHelpProxy">
+	<require
+        like_class=".onlinehelp.OnlineHelp" />
+  </class>
+
   <!-- this is the generic help topic implementation -->
   <class class=".onlinehelptopic.OnlineHelpTopic">
     <require
