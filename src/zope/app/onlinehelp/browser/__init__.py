@@ -50,6 +50,7 @@ class ZPTOnlineHelpTopicView(BrowserView):
 
 
 class ContextHelpView(BrowserView):
+    """Contextual help view."""
 
     def __init__(self, context, request):
         super(ContextHelpView, self).__init__(context, request)

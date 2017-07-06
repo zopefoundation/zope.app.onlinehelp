@@ -13,7 +13,7 @@
 ##############################################################################
 """OnlineHelp System.
 
-Create the global `OnlineHelp` instance.
+Create the global ``OnlineHelp`` instance.
 
 """
 __docformat__ = 'restructuredtext'
@@ -65,7 +65,7 @@ class helpNamespace(object):
         """
         Used to traverse to an online help topic.
 
-        Returns a proxy for the global :class::`~.OnlineHelp` instance
+        Returns a proxy for the global :class:`~.OnlineHelp` instance
         with the traversal context.
         """
         return _TraversedOnlineHelpProxy(self.context)
