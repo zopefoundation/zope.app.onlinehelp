@@ -2,7 +2,7 @@
  CHANGES
 =========
 
-4.1.0 (unreleased)
+4.1.0 (2017-07-12)
 ==================
 
 - The help namespace no longer modifies the global help object on
