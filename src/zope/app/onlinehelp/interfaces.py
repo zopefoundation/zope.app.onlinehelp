@@ -15,7 +15,6 @@
 
 These are the interfaces designed for the `OnlineHelp` system.
 
-$Id$
 """
 __docformat__ = 'restructuredtext'
 
@@ -38,6 +37,7 @@ class IOnlineHelpTopic(IContainer):
     You can also associate a Topic with a particular view.
 
     The Topic's content can be in the following four formats:
+
      - Plain Text,
      - HTML,
      - Structured Text (STX) and
@@ -50,7 +50,7 @@ class IOnlineHelpTopic(IContainer):
     The topic itself is stored in the IContainer implementation after add
     the right parent topic of a child. This mechanism ensures that we don't
     have to take care on the registration order.
-    The topic resources are stroed in the `IContainer` implementation of
+    The topic resources are stored in the :class:`zope.container.interfaces.IContainer` implementation of
     the topic too.
     """
 
@@ -146,27 +146,27 @@ class IOnlineHelp(ISourceTextOnlineHelpTopic):
                           interface=None, view=None, resources=None):
         """This method registers a topic at the correct place.
 
-        `parent_path` -- Location of this topic's parent in the OnlineHelp
-        tree. Need not to exist at time of creation.
+        :param parent_path: Location of this topic's parent in the OnlineHelp
+            tree. Need not to exist at time of creation.
 
-        `id` -- Specifies the id of the topic
+        :param id: Specifies the id of the topic
 
-        `title` -- Specifies title of the topic. This title will be used in
-        the tree as Identification.
+        :param title: Specifies title of the topic. This title will be used in
+            the tree as Identification.
 
-        `doc_path` -- Specifies where the file that contains the topic content
-        is located.
+        :param doc_path: -- Specifies where the file that contains the topic content
+            is located.
 
-        `interface` -- Name of the interface for which the help topic is being
-        registered. This can be optional, since not all topics must be bound
-        to a particular interface.
+        :keyword interface: Name of the interface for which the help topic is being
+            registered. This can be optional, since not all topics must be bound
+            to a particular interface.
 
-        `view` -- This attribute specifies the name of the view for which this
-        topic is registered. Note that this attribute is also optional.
+        :keyword view: This attribute specifies the name of the view for which this
+            topic is registered. Note that this attribute is also optional.
 
-        `resources` -- Specifies a list of resources for the topic, for
-        example images that are included by the rendered topic content.
-        Optional.
+        :keyword resources: Specifies a list of resources for the topic, for
+            example images that are included by the rendered topic content.
+            Optional.
         """
 
 

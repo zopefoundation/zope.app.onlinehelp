@@ -18,3 +18,5 @@ recursive-include src *.cfg
 recursive-include src *.js
 recursive-include src *.html
 recursive-include src *.xml
+
+recursive-include docs *.py *.rst Makefile

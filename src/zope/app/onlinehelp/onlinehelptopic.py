@@ -48,6 +48,8 @@ class OnlineHelpResource(Persistent):
     Represents a resource that is used inside
     the rendered Help Topic - for example a screenshot.
 
+    Implements :class:`~zope.app.onlinehelp.interfaces.IOnlineHelpResource`.
+
     >>> from zope.app.onlinehelp.tests.test_onlinehelp import testdir
     >>> path = os.path.join(testdir(), 'test1.png')
 
@@ -207,6 +209,8 @@ class OnlineHelpTopic(SourceTextOnlineHelpTopic):
     rendered as structured text. If a file doesn't have the right file
     extension, use a explicit topic class for representing the right format.
 
+    Implements :class:`~zope.app.onlinehelp.interfaces.ISourceTextOnlineHelpTopic`.
+
       >>> from zope.app.onlinehelp.tests.test_onlinehelp import testdir
       >>> path = os.path.join(testdir(), 'help.txt')
 
@@ -297,6 +301,8 @@ class RESTOnlineHelpTopic(SourceTextOnlineHelpTopic):
     Represents a restructed text based Help Topic which has other
     filename extension then '.rst' or 'rest'.
 
+    Implements :class:`~zope.app.onlinehelp.interfaces.IRESTOnlineHelpTopic`.
+
       >>> from zope.app.onlinehelp.tests.test_onlinehelp import testdir
       >>> path = os.path.join(testdir(), 'help.rst')
 
@@ -347,6 +353,8 @@ class STXOnlineHelpTopic(SourceTextOnlineHelpTopic):
     Represents a restructed text based Help Topic which has other
     filename extension then '.stx'.
 
+    Implements :class:`~zope.app.onlinehelp.interfaces.ISTXOnlineHelpTopic`.
+
       >>> from zope.app.onlinehelp.tests.test_onlinehelp import testdir
       >>> path = os.path.join(testdir(), 'help.stx')
 
@@ -394,6 +402,8 @@ class STXOnlineHelpTopic(SourceTextOnlineHelpTopic):
 class ZPTOnlineHelpTopic(BaseOnlineHelpTopic):
     r"""Represents a page template based Help Topic which has other
     filename extension than `.pt`.
+
+    Implements :class:`~zope.app.onlinehelp.interfaces.IZPTOnlineHelpTopic`.
 
       >>> from zope.publisher.browser import TestRequest, BrowserView
       >>> from zope.app.pagetemplate.viewpagetemplatefile import \

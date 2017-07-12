@@ -33,6 +33,8 @@ from zope.app.onlinehelp.onlinehelptopic import OnlineHelpTopic
 @implementer(IOnlineHelp, IContainmentRoot)
 class OnlineHelp(OnlineHelpTopic):
     """
+    Implementation of :class:`~.IOnlineHelp`.
+
     >>> import os
     >>> from zope import component
     >>> from zope.component.interfaces import IFactory
