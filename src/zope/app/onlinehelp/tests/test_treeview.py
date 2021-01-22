@@ -60,13 +60,13 @@ class TestOnlineHelpTopicTreeView(PlacefulSetup, unittest.TestCase):
         title = 'Topic1_1'
         parentPath = 'topic1'
         topic1_1 = OnlineHelpTopic(id, title, path, parentPath)
-        topic1['topic1_1']  = topic1_1
+        topic1['topic1_1'] = topic1_1
 
         id = 'topic1_1_1'
         title = 'Topic1_1_1'
         parentPath = 'topic1/topic1_1'
         topic1_1_1 = OnlineHelpTopic(id, title, path, parentPath)
-        topic1_1['topic1_1_1']  = topic1_1_1
+        topic1_1['topic1_1_1'] = topic1_1_1
 
         id = 'topic2'
         title = 'Topic2'
@@ -81,6 +81,3 @@ class TestOnlineHelpTopicTreeView(PlacefulSetup, unittest.TestCase):
 
 def test_suite():
     return unittest.defaultTestLoader.loadTestsFromName(__name__)
-
-if __name__ == '__main__':
-    unittest.main()

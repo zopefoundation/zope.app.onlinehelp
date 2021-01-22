@@ -23,6 +23,7 @@ from zope.traversing.api import getPath, joinPath
 
 from zope.app.onlinehelp.interfaces import IOnlineHelp
 
+
 class OnlineHelpTopicTreeView(BrowserView):
     """Online help topic tree view."""
 
@@ -39,7 +40,7 @@ class OnlineHelpTopicTreeView(BrowserView):
         Each time you get a level 0 means this is a subitem of the
         Onlinehelp itself::
 
-          >>> info = [('id',{infoDict}),(),()]
+          >>> info = [('id',{infoDict}),(),()]  # noqa: F821 undefined name
 
           <ul class="tree" id="tree">
             <li><a href="#">items</a>
@@ -117,7 +118,7 @@ class OnlineHelpTopicTreeView(BrowserView):
     def renderLink(self, topic):
         """Render a href element."""
         title = translate(topic.title, context=self.request,
-                default=topic.title)
+                          default=topic.title)
         if topic.parentPath:
             url = joinPath(topic.parentPath, topic.id)
         else:
@@ -132,7 +133,7 @@ class OnlineHelpTopicTreeView(BrowserView):
         try:
             if getPath(self.context).startswith('/' + path):
                 return True
-        except:
+        except:  # noqa: E722 do not use bare 'except'
             # TODO: fix it, functional test doesn't like getPath? ri
             pass
         return False

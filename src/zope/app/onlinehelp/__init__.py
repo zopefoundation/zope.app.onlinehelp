@@ -32,8 +32,9 @@ from zope.app.onlinehelp.onlinehelp import OnlineHelp
 
 # Global Online Help Instance
 path = os.path.join(os.path.dirname(__file__),
-                      'help', 'welcome.stx')
+                    'help', 'welcome.stx')
 globalhelp = OnlineHelp('Online Help', path)
+
 
 class _TraversedOnlineHelpProxy(ProxyBase):
     """
@@ -83,7 +84,8 @@ def getTopicFor(obj, view=None):
 
     >>> import os
     >>> from zope.app.onlinehelp.tests.test_onlinehelp import testdir
-    >>> from zope.app.onlinehelp.tests.test_onlinehelp import I1, Dummy1, Dummy2
+    >>> from zope.app.onlinehelp.tests.test_onlinehelp import I1
+    >>> from zope.app.onlinehelp.tests.test_onlinehelp import Dummy1, Dummy2
     >>> from zope.app.onlinehelp import tests as ztapi
     >>> from zope.component.interfaces import IFactory
     >>> from zope.component.factory import Factory
@@ -141,7 +143,7 @@ def getTopicFor(obj, view=None):
     view name and registered for that interface, still only the first
     topic will be found.
 
-    >>> from zope.interface import Interface, implementer, alsoProvides
+    >>> from zope.interface import Interface, implementer
     >>> class I3(Interface):
     ...     pass
     >>> @implementer(I3)
@@ -174,6 +176,7 @@ def getTopicFor(obj, view=None):
         for _name, topic in getUtilitiesFor(IOnlineHelpTopic):
             if topic.interface == interface and topic.view == view:
                 return topic
+
 
 def _clear():
     globalhelp.__init__(globalhelp.title, globalhelp.path)
