@@ -50,33 +50,34 @@ class IOnlineHelpTopic(IContainer):
     The topic itself is stored in the IContainer implementation after add
     the right parent topic of a child. This mechanism ensures that we don't
     have to take care on the registration order.
-    The topic resources are stored in the :class:`zope.container.interfaces.IContainer` implementation of
-    the topic too.
+    The topic resources are stored in the
+    :class:`zope.container.interfaces.IContainer` implementation of the topic,
+    too.
     """
 
     id = TextLine(
-        title = _(u"Id"),
-        description = _(u"The Id of this Help Topic"),
-        default = u"",
-        required = True)
+        title=_(u"Id"),
+        description=_(u"The Id of this Help Topic"),
+        default=u"",
+        required=True)
 
     parentPath = TextLine(
-        title = _(u"Parent Path"),
-        description = _(u"The Path to the Parent of this Help Topic"),
-        default = u"",
-        required = False)
+        title=_(u"Parent Path"),
+        description=_(u"The Path to the Parent of this Help Topic"),
+        default=u"",
+        required=False)
 
     title = TextLine(
-        title = _(u"Help Topic Title"),
-        description = _(u"The Title of a Help Topic"),
-        default = _(u"Help Topic"),
-        required = True)
+        title=_(u"Help Topic Title"),
+        description=_(u"The Title of a Help Topic"),
+        default=_(u"Help Topic"),
+        required=True)
 
     path = TextLine(
-        title = _(u"Path to the Topic"),
-        description = _(u"The Path to the Definition of a Help Topic"),
-        default = u"./README.TXT",
-        required = True)
+        title=_(u"Path to the Topic"),
+        description=_(u"The Path to the Definition of a Help Topic"),
+        default=u"./README.TXT",
+        required=True)
 
     interface = GlobalInterface(
         title=_(u"Object Interface"),
@@ -85,11 +86,11 @@ class IOnlineHelpTopic(IContainer):
         required=False)
 
     view = TextLine(
-        title = _(u"View Name"),
-        description = _(u"The View Name for which this Help Topic"
-                        " is registered"),
-        default = _(u""),
-        required = True)
+        title=_(u"View Name"),
+        description=_(u"The View Name for which this Help Topic"
+                      " is registered"),
+        default=_(u""),
+        required=True)
 
     def addResources(resources):
         """Add resources to this Help Topic.
@@ -120,8 +121,8 @@ class ISourceTextOnlineHelpTopic(IOnlineHelpTopic):
         title=_(u"Source Type"),
         description=_(u"Type of the source text, e.g. structured text"),
         default=u"zope.source.rest",
-        required = True,
-        vocabulary = "SourceTypes")
+        required=True,
+        vocabulary="SourceTypes")
 
 
 class IRESTOnlineHelpTopic(ISourceTextOnlineHelpTopic):
@@ -154,15 +155,16 @@ class IOnlineHelp(ISourceTextOnlineHelpTopic):
         :param title: Specifies title of the topic. This title will be used in
             the tree as Identification.
 
-        :param doc_path: -- Specifies where the file that contains the topic content
-            is located.
+        :param doc_path: -- Specifies where the file that contains the topic
+            content is located.
 
-        :keyword interface: Name of the interface for which the help topic is being
-            registered. This can be optional, since not all topics must be bound
-            to a particular interface.
+        :keyword interface: Name of the interface for which the help topic is
+            being registered. This can be optional, since not all topics must
+            be bound to a particular interface.
 
-        :keyword view: This attribute specifies the name of the view for which this
-            topic is registered. Note that this attribute is also optional.
+        :keyword view: This attribute specifies the name of the view for which
+            this topic is registered. Note that this attribute is also
+            optional.
 
         :keyword resources: Specifies a list of resources for the topic, for
             example images that are included by the rendered topic content.
@@ -174,8 +176,8 @@ class IOnlineHelpResource(IFile, IFileContent):
     """A resource, which can be used in a help topic """
 
     path = TextLine(
-        title = _(u"Path to the Resource"),
-        description = _(u"The Path to the Resource, assumed to be "
-                        "in the same directory as the Help Topic"),
-        default = u"",
-        required = True)
+        title=_(u"Path to the Resource"),
+        description=_(u"The Path to the Resource, assumed to be "
+                      "in the same directory as the Help Topic"),
+        default=u"",
+        required=True)

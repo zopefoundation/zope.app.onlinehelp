@@ -14,10 +14,15 @@
 """Test the gts ZCML namespace directives.
 
 """
+from zope.component import testing
+from zope.app.onlinehelp.onlinehelptopic import ZPTOnlineHelpTopic
+from zope.app.onlinehelp.onlinehelptopic import STXOnlineHelpTopic
+from zope.app.onlinehelp.onlinehelptopic import RESTOnlineHelpTopic
+from zope.app.onlinehelp.onlinehelptopic import OnlineHelpTopic
+from zope.app.onlinehelp import globalhelp
 import unittest
 
 from zope.interface import Interface
-from zope.configuration import xmlconfig
 from zope.configuration.xmlconfig import XMLConfig
 from zope.component.interfaces import IFactory
 from zope.component.factory import Factory
@@ -30,13 +35,6 @@ import zope.app.security
 import zope.app.onlinehelp
 from zope.app.onlinehelp import tests
 ztapi = tests
-from zope.app.onlinehelp import globalhelp
-from zope.app.onlinehelp.onlinehelptopic import OnlineHelpTopic
-from zope.app.onlinehelp.onlinehelptopic import RESTOnlineHelpTopic
-from zope.app.onlinehelp.onlinehelptopic import STXOnlineHelpTopic
-from zope.app.onlinehelp.onlinehelptopic import ZPTOnlineHelpTopic
-
-from zope.component import testing
 
 
 class I1(Interface):
@@ -74,8 +72,6 @@ class DirectivesTest(testing.PlacelessSetup, unittest.TestCase):
         topic = globalhelp['help1']
         self.assertIn('test1.png', topic.keys())
 
+
 def test_suite():
     return unittest.defaultTestLoader.loadTestsFromName(__name__)
-
-if __name__ == '__main__':
-    unittest.main()

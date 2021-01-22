@@ -65,7 +65,7 @@ class IOnlineHelpTopicDirective(Interface):
         description=u"""
         The factory is the topic class used for initializeing the topic""",
         required=False,
-        )
+    )
 
     resources = Tokens(
         title=u"A list of resources.",
@@ -76,4 +76,4 @@ class IOnlineHelpTopicDirective(Interface):
         """,
         value_type=TextLine(),
         required=False
-        )
+    )

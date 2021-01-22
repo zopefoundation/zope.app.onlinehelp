@@ -21,6 +21,7 @@ here = os.path.dirname(zope.app.onlinehelp.tests.__file__)
 input_dir = os.path.join(here, 'input')
 output_dir = os.path.join(here, 'output')
 
+
 def read_output(filename):
     filename = os.path.join(output_dir, filename)
     with open(filename, 'r') as f:

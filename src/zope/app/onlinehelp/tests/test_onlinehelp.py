@@ -29,15 +29,19 @@ from zope.testing import renormalizing
 from zope.app.onlinehelp import onlinehelptopic
 from zope.app.onlinehelp import onlinehelp
 
+
 class I1(Interface):
     pass
+
 
 @implementer(I1)
 class Dummy1(object):
     pass
 
+
 class Dummy2(object):
     pass
+
 
 class TestOnlineHelpResource(unittest.TestCase):
 
@@ -45,6 +49,7 @@ class TestOnlineHelpResource(unittest.TestCase):
         r = onlinehelptopic.OnlineHelpResource(
             os.path.join(testdir(), 'help.html'))
         self.assertEqual(20, r.getSize())
+
 
 class TestBaseOnlineHelpTopic(unittest.TestCase):
 
@@ -56,6 +61,7 @@ class TestBaseOnlineHelpTopic(unittest.TestCase):
             onlinehelptopic.BaseOnlineHelpTopic,
             'id', 'title', 'path that does not exist',
             'parentpath')
+
 
 class TestOnlineHelp(unittest.TestCase):
 
@@ -92,9 +98,11 @@ class TestOnlineHelpNamespace(unittest.TestCase):
 def testdir():
     return os.path.dirname(__file__)
 
+
 def setUp(tests):
     testing.setUp()
     xmlconfig.file('configure.zcml', zope.traversing)
+
 
 def test_suite():
     checker = renormalizing.RENormalizing((
@@ -113,6 +121,3 @@ def test_suite():
                      checker=checker),
         unittest.defaultTestLoader.loadTestsFromName(__name__),
     ))
-
-if __name__ == '__main__':
-      unittest.main(defaultTest='test_suite')

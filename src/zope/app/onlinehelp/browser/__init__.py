@@ -87,7 +87,7 @@ class ContextHelpView(BrowserView):
             self.topic = getTopicFor(
                 getParent(help_context),
                 getName(help_context)
-                )
+            )
             if self.topic is None:
                 # nothing found for view try context only
                 self.topic = getTopicFor(getParent(help_context))

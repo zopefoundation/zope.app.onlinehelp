@@ -19,12 +19,12 @@ import transaction
 import unittest
 
 from zope.site.interfaces import IRootFolder
-from zope.app.file import File
 from zope.app.onlinehelp.tests.test_onlinehelp import testdir
 from zope.app.onlinehelp import globalhelp
 from zope.app.onlinehelp.testing import OnlineHelpLayer
 
 from webtest import TestApp
+
 
 class BrowserTestCase(unittest.TestCase):
 
@@ -57,13 +57,13 @@ class BrowserTestCase(unittest.TestCase):
             response = self._testapp.post(path, params=form,
                                           extra_environ=env, headers=headers)
         else:
-            response = self._testapp.get(path, extra_environ=env, headers=headers)
+            response = self._testapp.get(
+                path, extra_environ=env, headers=headers)
 
         response.getBody = lambda: response.unicode_normal_body
         response.getStatus = lambda: response.status_int
         response.getHeader = lambda n: response.headers[n]
         return response
-
 
 
 class TestBrowser(BrowserTestCase):
@@ -73,7 +73,7 @@ class TestBrowser(BrowserTestCase):
         globalhelp.registerHelpTopic('help', 'Help', '', path, IRootFolder)
         path = os.path.join(testdir(), 'help2.txt')
         globalhelp.registerHelpTopic('help2', 'Help2', '', path, IRootFolder,
-            'contents.html')
+                                     'contents.html')
 
         transaction.commit()
 
@@ -125,6 +125,7 @@ class TestBrowser(BrowserTestCase):
 
         self.checkForBrokenLinks(body, path, basic='mgr:mgrpw')
 
+
 class TestZPT(unittest.TestCase):
 
     layer = OnlineHelpLayer
@@ -157,6 +158,7 @@ class TestZPT(unittest.TestCase):
         zpt.topicContent = "the topic text"
         zpt.renderTopic()
 
+
 class TestContextHelpView(unittest.TestCase):
 
     def test_idempotent(self):
@@ -168,6 +170,7 @@ class TestContextHelpView(unittest.TestCase):
 
     def test_without_view(self):
         from zope.app.onlinehelp.browser import ContextHelpView
+
         class Context(object):
             @property
             def context(self):
@@ -177,8 +180,6 @@ class TestContextHelpView(unittest.TestCase):
         topic = view.getContextHelpTopic()
         self.assertIs(context, topic)
 
+
 def test_suite():
     return unittest.defaultTestLoader.loadTestsFromName(__name__)
-
-if __name__ == '__main__':
-    unittest.main()

@@ -30,6 +30,7 @@ from zope.traversing.api import traverse
 from zope.app.onlinehelp.interfaces import IOnlineHelp, IOnlineHelpTopic
 from zope.app.onlinehelp.onlinehelptopic import OnlineHelpTopic
 
+
 @implementer(IOnlineHelp, IContainmentRoot)
 class OnlineHelp(OnlineHelpTopic):
     """
@@ -40,7 +41,7 @@ class OnlineHelp(OnlineHelpTopic):
     >>> from zope.component.interfaces import IFactory
     >>> from zope.component.factory import Factory
     >>> from zope.app.onlinehelp.tests.test_onlinehelp import testdir
-    >>> from zope.app.onlinehelp.tests.test_onlinehelp import I1, Dummy1
+    >>> from zope.app.onlinehelp.tests.test_onlinehelp import I1
     >>> path = os.path.join(testdir(), 'help.txt')
 
     Create an `OnlineHelp` instance
@@ -121,7 +122,8 @@ class OnlineHelp(OnlineHelpTopic):
         "See zope.app.onlineHelp.interfaces.IOnlineHelp"
 
         if not os.path.exists(doc_path):
-            if doc_path.endswith('.txt') and os.path.exists(doc_path[:-4] + '.rst'):
+            if (doc_path.endswith('.txt')
+                    and os.path.exists(doc_path[:-4] + '.rst')):
                 doc_path = doc_path[:-4] + '.rst'
 
         if not os.path.exists(doc_path):
@@ -153,10 +155,6 @@ class OnlineHelp(OnlineHelpTopic):
                     t[1][id] = topic
             if topic.getTopicPath() == t[1].parentPath:
                 topic[t[1].id] = t[1]
-
-        # Add topic to utilities registry
-        #utils = getService(Utilities)
-        #utils.provideUtility(IOnlineHelpTopic, topic, topic.getTopicPath())
 
         getGlobalSiteManager().registerUtility(
             topic, IOnlineHelpTopic, topic.getTopicPath())

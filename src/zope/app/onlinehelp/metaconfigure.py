@@ -25,7 +25,7 @@ from zope.app.onlinehelp import globalhelp
 class OnlineHelpTopicDirective(object):
 
     def __init__(self, _context, id, title, parent="", doc_path=None,
-        for_=None, view=None, class_=None, resources=None):
+                 for_=None, view=None, class_=None, resources=None):
         self._context = _context
         self.id = id
         self.title = title

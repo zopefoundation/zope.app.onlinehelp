@@ -42,6 +42,7 @@ try:
 except NameError:
     text_type = str
 
+
 @implementer(IOnlineHelpResource)
 class OnlineHelpResource(Persistent):
     r"""
@@ -96,7 +97,8 @@ class OnlineHelpResource(Persistent):
     def data(self):
         with open(os.path.normpath(self.path), self._fileMode) as f:
             data = f.read()
-        if self.contentType.startswith('text/') and not isinstance(data, text_type):
+        if (self.contentType.startswith('text/')
+                and not isinstance(data, text_type)):
             data = data.decode(self._encoding)
         return data
 
@@ -156,7 +158,7 @@ class BaseOnlineHelpTopic(SampleContainer):
         if not os.path.exists(self.path):
             raise ConfigurationError(
                 "Help Topic definition %s does not exist" % self.path
-                )
+            )
 
         super(BaseOnlineHelpTopic, self).__init__()
 
@@ -209,7 +211,8 @@ class OnlineHelpTopic(SourceTextOnlineHelpTopic):
     rendered as structured text. If a file doesn't have the right file
     extension, use a explicit topic class for representing the right format.
 
-    Implements :class:`~zope.app.onlinehelp.interfaces.ISourceTextOnlineHelpTopic`.
+    Implements
+    :class:`~zope.app.onlinehelp.interfaces.ISourceTextOnlineHelpTopic`.
 
       >>> from zope.app.onlinehelp.tests.test_onlinehelp import testdir
       >>> path = os.path.join(testdir(), 'help.txt')
@@ -280,16 +283,16 @@ class OnlineHelpTopic(SourceTextOnlineHelpTopic):
     def __init__(self, id, title, path, parentPath, interface=None, view=None):
         """Initialize object."""
         super(OnlineHelpTopic, self).__init__(id, title, path, parentPath,
-              interface, view)
+                                              interface, view)
 
         filename = os.path.basename(path.lower())
         file_ext = 'txt'
-        if len(filename.split('.'))>1:
+        if len(filename.split('.')) > 1:
             file_ext = filename.split('.')[-1]
 
         self.type = 'zope.source.plaintext'
 
-        if file_ext in ('rst', 'rest') :
+        if file_ext in ('rst', 'rest'):
             self.type = 'zope.source.rest'
         elif file_ext in ('stx', 'html', 'htm'):
             self.type = 'zope.source.stx'
@@ -397,6 +400,7 @@ class STXOnlineHelpTopic(SourceTextOnlineHelpTopic):
     """
 
     type = 'zope.source.stx'
+
 
 @implementer(IZPTOnlineHelpTopic)
 class ZPTOnlineHelpTopic(BaseOnlineHelpTopic):
