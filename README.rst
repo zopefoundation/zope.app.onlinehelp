@@ -2,8 +2,8 @@
         :target: http://zopeapponlinehelp.readthedocs.io/en/latest/?badge=latest
         :alt: Documentation Status
 
-.. image:: https://travis-ci.org/zopefoundation/zope.app.onlinehelp.svg?branch=master
-        :target: https://travis-ci.org/zopefoundation/zope.app.onlinehelp
+.. image:: https://github.com/zopefoundation/zope.app.onlinehelp/actions/workflows/tests.yml/badge.svg
+        :target: https://github.com/zopefoundation/zope.app.onlinehelp/actions/workflows/tests.yml
         :alt: Build Status
 
 .. image:: https://coveralls.io/repos/github/zopefoundation/zope.app.onlinehelp/badge.svg?branch=master
