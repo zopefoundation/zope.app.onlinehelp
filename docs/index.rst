@@ -1,6 +1,6 @@
-==========================
- What is zope.app.tree?
-==========================
+==============================
+ What is zope.app.onlinehelp?
+==============================
 
 .. include:: ../README.rst
 
@@ -19,16 +19,16 @@
 Development
 ===========
 
-zope.app.tree is hosted at GitHub:
+zope.app.onlinehelp is hosted at GitHub:
 
-    https://github.com/zopefoundation/zope.app.tree/
+    https://github.com/zopefoundation/zope.app.onlinehelp/
 
 
 
 Project URLs
 ============
 
-* https://pypi.python.org/pypi/zope.app.tree       (PyPI entry and downloads)
+* https://pypi.org/project/zope.app.onlinehelp/       (PyPI entry and downloads)
 
 
 ====================
