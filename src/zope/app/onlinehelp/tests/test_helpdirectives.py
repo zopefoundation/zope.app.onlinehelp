@@ -14,26 +14,28 @@
 """Test the gts ZCML namespace directives.
 
 """
-from zope.component import testing
-from zope.app.onlinehelp.onlinehelptopic import ZPTOnlineHelpTopic
-from zope.app.onlinehelp.onlinehelptopic import STXOnlineHelpTopic
-from zope.app.onlinehelp.onlinehelptopic import RESTOnlineHelpTopic
-from zope.app.onlinehelp.onlinehelptopic import OnlineHelpTopic
-from zope.app.onlinehelp import globalhelp
 import unittest
 
-from zope.interface import Interface
-from zope.configuration.xmlconfig import XMLConfig
-from zope.component.interfaces import IFactory
+import zope.app.component
+import zope.app.security
+import zope.traversing
+from zope.component import testing
 from zope.component.factory import Factory
+from zope.component.interfaces import IFactory
+from zope.configuration.xmlconfig import XMLConfig
+from zope.interface import Interface
 from zope.security.interfaces import IPermission
 from zope.security.permission import Permission
 
-import zope.traversing
-import zope.app.component
-import zope.app.security
 import zope.app.onlinehelp
+from zope.app.onlinehelp import globalhelp
 from zope.app.onlinehelp import tests
+from zope.app.onlinehelp.onlinehelptopic import OnlineHelpTopic
+from zope.app.onlinehelp.onlinehelptopic import RESTOnlineHelpTopic
+from zope.app.onlinehelp.onlinehelptopic import STXOnlineHelpTopic
+from zope.app.onlinehelp.onlinehelptopic import ZPTOnlineHelpTopic
+
+
 ztapi = tests
 
 
@@ -44,7 +46,7 @@ class I1(Interface):
 class DirectivesTest(testing.PlacelessSetup, unittest.TestCase):
 
     def setUp(self):
-        super(DirectivesTest, self).setUp()
+        super().setUp()
         ztapi.provideUtility(IPermission, Permission('zope.View', 'View', ''),
                              'zope.View')
         XMLConfig('meta.zcml', zope.app.security)()
@@ -64,7 +66,7 @@ class DirectivesTest(testing.PlacelessSetup, unittest.TestCase):
     def test_register(self):
         self.assertEqual(list(globalhelp.keys()), [])
         XMLConfig('help.zcml', tests)()
-        res = [u'help4', u'help5', u'help2', u'help3', u'help1']
+        res = ['help4', 'help5', 'help2', 'help3', 'help1']
         res.sort()
 
         helpList = sorted(globalhelp.keys())

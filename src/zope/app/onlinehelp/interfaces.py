@@ -18,13 +18,14 @@ These are the interfaces designed for the `OnlineHelp` system.
 """
 __docformat__ = 'restructuredtext'
 
-from zope.schema import TextLine, SourceText, Choice
+import zope.i18nmessageid
+from zope.app.file.interfaces import IFile
+from zope.app.publication.interfaces import IFileContent
 from zope.configuration.fields import GlobalInterface
 from zope.container.interfaces import IContainer
-from zope.app.publication.interfaces import IFileContent
-from zope.app.file.interfaces import IFile
-
-import zope.i18nmessageid
+from zope.schema import Choice
+from zope.schema import SourceText
+from zope.schema import TextLine
 
 
 _ = zope.i18nmessageid.MessageFactory("zope")
@@ -56,40 +57,40 @@ class IOnlineHelpTopic(IContainer):
     """
 
     id = TextLine(
-        title=_(u"Id"),
-        description=_(u"The Id of this Help Topic"),
-        default=u"",
+        title=_("Id"),
+        description=_("The Id of this Help Topic"),
+        default="",
         required=True)
 
     parentPath = TextLine(
-        title=_(u"Parent Path"),
-        description=_(u"The Path to the Parent of this Help Topic"),
-        default=u"",
+        title=_("Parent Path"),
+        description=_("The Path to the Parent of this Help Topic"),
+        default="",
         required=False)
 
     title = TextLine(
-        title=_(u"Help Topic Title"),
-        description=_(u"The Title of a Help Topic"),
-        default=_(u"Help Topic"),
+        title=_("Help Topic Title"),
+        description=_("The Title of a Help Topic"),
+        default=_("Help Topic"),
         required=True)
 
     path = TextLine(
-        title=_(u"Path to the Topic"),
-        description=_(u"The Path to the Definition of a Help Topic"),
-        default=u"./README.TXT",
+        title=_("Path to the Topic"),
+        description=_("The Path to the Definition of a Help Topic"),
+        default="./README.TXT",
         required=True)
 
     interface = GlobalInterface(
-        title=_(u"Object Interface"),
-        description=_(u"Interface for which this Help Topic is registered."),
+        title=_("Object Interface"),
+        description=_("Interface for which this Help Topic is registered."),
         default=None,
         required=False)
 
     view = TextLine(
-        title=_(u"View Name"),
-        description=_(u"The View Name for which this Help Topic"
+        title=_("View Name"),
+        description=_("The View Name for which this Help Topic"
                       " is registered"),
-        default=_(u""),
+        default=_(""),
         required=True)
 
     def addResources(resources):
@@ -111,16 +112,16 @@ class ISourceTextOnlineHelpTopic(IOnlineHelpTopic):
     """REstructed text based online help topic."""
 
     source = SourceText(
-        title=_(u"Source Text"),
-        description=_(u"Renderable source text of the topic."),
-        default=u"",
+        title=_("Source Text"),
+        description=_("Renderable source text of the topic."),
+        default="",
         required=True,
         readonly=True)
 
     type = Choice(
-        title=_(u"Source Type"),
-        description=_(u"Type of the source text, e.g. structured text"),
-        default=u"zope.source.rest",
+        title=_("Source Type"),
+        description=_("Type of the source text, e.g. structured text"),
+        default="zope.source.rest",
         required=True,
         vocabulary="SourceTypes")
 
@@ -176,8 +177,8 @@ class IOnlineHelpResource(IFile, IFileContent):
     """A resource, which can be used in a help topic """
 
     path = TextLine(
-        title=_(u"Path to the Resource"),
-        description=_(u"The Path to the Resource, assumed to be "
+        title=_("Path to the Resource"),
+        description=_("The Path to the Resource, assumed to be "
                       "in the same directory as the Help Topic"),
-        default=u"",
+        default="",
         required=True)

@@ -22,7 +22,7 @@ __docformat__ = 'restructuredtext'
 from zope.app.onlinehelp import globalhelp
 
 
-class OnlineHelpTopicDirective(object):
+class OnlineHelpTopicDirective:
 
     def __init__(self, _context, id, title, parent="", doc_path=None,
                  for_=None, view=None, class_=None, resources=None):

@@ -19,7 +19,8 @@ __docformat__ = 'restructuredtext'
 from zope.component import getUtility
 from zope.i18n import translate
 from zope.publisher.browser import BrowserView
-from zope.traversing.api import getPath, joinPath
+from zope.traversing.api import getPath
+from zope.traversing.api import joinPath
 
 from zope.app.onlinehelp.interfaces import IOnlineHelp
 
@@ -28,7 +29,7 @@ class OnlineHelpTopicTreeView(BrowserView):
     """Online help topic tree view."""
 
     def __init__(self, context, request):
-        super(OnlineHelpTopicTreeView, self).__init__(context, request)
+        super().__init__(context, request)
         self.onlinehelp = getUtility(IOnlineHelp, "OnlineHelp")
 
     def getTopicTree(self):
@@ -108,7 +109,7 @@ class OnlineHelpTopicTreeView(BrowserView):
 
             res.append(self.renderLink(item))
             if len(item.getSubTopics()) > 0:
-                res.append('    %s%s' % (
+                res.append('    {}{}'.format(
                     self.renderItemList(item, intend), intend))
             res.append('  %s</li>' % intend)
         res.append('%s</ul>' % intend)
@@ -123,7 +124,7 @@ class OnlineHelpTopicTreeView(BrowserView):
             url = joinPath(topic.parentPath, topic.id)
         else:
             url = topic.id
-        return '<a href="/++help++/%s">%s</a>\n' % (url, title)
+        return '<a href="/++help++/{}">{}</a>\n'.format(url, title)
 
     def isExpanded(self, topic):
         if topic.parentPath:
