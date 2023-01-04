@@ -14,7 +14,6 @@
 """Implementation of an Online Help Topic.
 
 """
-from __future__ import absolute_import
 
 
 __docformat__ = 'restructuredtext'
@@ -140,10 +139,10 @@ class BaseOnlineHelpTopic(SampleContainer):
       'image/png'
     """
 
-    id = u""
-    title = u""
-    path = u""
-    parentPath = u""
+    id = ""
+    title = ""
+    path = ""
+    parentPath = ""
     interface = None
     view = None
 
@@ -161,7 +160,7 @@ class BaseOnlineHelpTopic(SampleContainer):
                 "Help Topic definition %s does not exist" % self.path
             )
 
-        super(BaseOnlineHelpTopic, self).__init__()
+        super().__init__()
 
     def _newContainerData(self):
         # Ensure consistent iteration order for tests.
@@ -283,8 +282,7 @@ class OnlineHelpTopic(SourceTextOnlineHelpTopic):
 
     def __init__(self, id, title, path, parentPath, interface=None, view=None):
         """Initialize object."""
-        super(OnlineHelpTopic, self).__init__(id, title, path, parentPath,
-                                              interface, view)
+        super().__init__(id, title, path, parentPath, interface, view)
 
         filename = os.path.basename(path.lower())
         file_ext = 'txt'

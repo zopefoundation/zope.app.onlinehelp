@@ -116,7 +116,7 @@ class OnlineHelp(OnlineHelpTopic):
     """
 
     def __init__(self, title, path):
-        super(OnlineHelp, self).__init__('', title, path, None)
+        super().__init__('', title, path, None)
 
     def registerHelpTopic(self, parent_path, id, title,
                           doc_path, interface=None, view=None,

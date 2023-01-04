@@ -35,11 +35,11 @@ class I1(Interface):
 
 
 @implementer(I1)
-class Dummy1(object):
+class Dummy1:
     pass
 
 
-class Dummy2(object):
+class Dummy2:
     pass
 
 

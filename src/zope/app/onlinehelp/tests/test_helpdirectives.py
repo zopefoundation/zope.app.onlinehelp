@@ -46,7 +46,7 @@ class I1(Interface):
 class DirectivesTest(testing.PlacelessSetup, unittest.TestCase):
 
     def setUp(self):
-        super(DirectivesTest, self).setUp()
+        super().setUp()
         ztapi.provideUtility(IPermission, Permission('zope.View', 'View', ''),
                              'zope.View')
         XMLConfig('meta.zcml', zope.app.security)()
@@ -66,7 +66,7 @@ class DirectivesTest(testing.PlacelessSetup, unittest.TestCase):
     def test_register(self):
         self.assertEqual(list(globalhelp.keys()), [])
         XMLConfig('help.zcml', tests)()
-        res = [u'help4', u'help5', u'help2', u'help3', u'help1']
+        res = ['help4', 'help5', 'help2', 'help3', 'help1']
         res.sort()
 
         helpList = sorted(globalhelp.keys())

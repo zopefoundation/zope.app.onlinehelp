@@ -53,7 +53,7 @@ class ContextHelpView(BrowserView):
     """Contextual help view."""
 
     def __init__(self, context, request):
-        super(ContextHelpView, self).__init__(context, request)
+        super().__init__(context, request)
         self.topic = None
 
     def getContextualTopicView(self):

@@ -26,5 +26,5 @@ output_dir = os.path.join(here, 'output')
 
 def read_output(filename):
     filename = os.path.join(output_dir, filename)
-    with open(filename, 'r') as f:
+    with open(filename) as f:
         return f.read()

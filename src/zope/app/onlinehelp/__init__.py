@@ -56,7 +56,7 @@ class _TraversedOnlineHelpProxy(ProxyBase):
     __reduce_ex__ = __reduce__
 
 
-class helpNamespace(object):
+class helpNamespace:
     """ help namespace handler """
 
     def __init__(self, context, request=None):
