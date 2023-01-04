@@ -15,15 +15,15 @@
 
 """
 import os
-import transaction
 import unittest
 
+import transaction
+from webtest import TestApp
 from zope.site.interfaces import IRootFolder
-from zope.app.onlinehelp.tests.test_onlinehelp import testdir
+
 from zope.app.onlinehelp import globalhelp
 from zope.app.onlinehelp.testing import OnlineHelpLayer
-
-from webtest import TestApp
+from zope.app.onlinehelp.tests.test_onlinehelp import testdir
 
 
 class BrowserTestCase(unittest.TestCase):
@@ -131,11 +131,12 @@ class TestZPT(unittest.TestCase):
     layer = OnlineHelpLayer
 
     def test_render(self):
-        from zope.app.onlinehelp.browser import ZPTOnlineHelpTopicView
-        from zope.publisher.browser import TestRequest
-        from zope.location.interfaces import LocationError
         from zope.app.rotterdam import Rotterdam
+        from zope.location.interfaces import LocationError
+        from zope.publisher.browser import TestRequest
         from zope.publisher.skinnable import applySkin
+
+        from zope.app.onlinehelp.browser import ZPTOnlineHelpTopicView
 
         class Context(object):
             path = os.path.join(os.path.dirname(__file__),

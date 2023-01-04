@@ -15,24 +15,25 @@
 
 """
 from __future__ import absolute_import
+
+
 __docformat__ = 'restructuredtext'
 
 import os
 
 from persistent import Persistent
-from zope.interface import implementer
-from zope.configuration.exceptions import ConfigurationError
-from zope.contenttype import guess_content_type
-
-from zope.container.sample import SampleContainer
 from zope.app.file.image import getImageInfo
+from zope.configuration.exceptions import ConfigurationError
+from zope.container.sample import SampleContainer
+from zope.contenttype import guess_content_type
+from zope.interface import implementer
 
+from zope.app.onlinehelp.interfaces import IOnlineHelpResource
 from zope.app.onlinehelp.interfaces import IOnlineHelpTopic
-from zope.app.onlinehelp.interfaces import ISourceTextOnlineHelpTopic
 from zope.app.onlinehelp.interfaces import IRESTOnlineHelpTopic
+from zope.app.onlinehelp.interfaces import ISourceTextOnlineHelpTopic
 from zope.app.onlinehelp.interfaces import ISTXOnlineHelpTopic
 from zope.app.onlinehelp.interfaces import IZPTOnlineHelpTopic
-from zope.app.onlinehelp.interfaces import IOnlineHelpResource
 
 
 DEFAULT_ENCODING = "utf-8"

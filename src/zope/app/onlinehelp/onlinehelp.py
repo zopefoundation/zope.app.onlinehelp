@@ -21,13 +21,15 @@ __docformat__ = 'restructuredtext'
 
 import os
 
-from zope.component import getGlobalSiteManager, getUtilitiesFor
-from zope.interface import implementer
+from zope.component import getGlobalSiteManager
+from zope.component import getUtilitiesFor
 from zope.configuration.exceptions import ConfigurationError
-from zope.traversing.interfaces import IContainmentRoot
+from zope.interface import implementer
 from zope.traversing.api import traverse
+from zope.traversing.interfaces import IContainmentRoot
 
-from zope.app.onlinehelp.interfaces import IOnlineHelp, IOnlineHelpTopic
+from zope.app.onlinehelp.interfaces import IOnlineHelp
+from zope.app.onlinehelp.interfaces import IOnlineHelpTopic
 from zope.app.onlinehelp.onlinehelptopic import OnlineHelpTopic
 
 

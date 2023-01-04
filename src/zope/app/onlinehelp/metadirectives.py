@@ -15,10 +15,14 @@
 """
 __docformat__ = 'restructuredtext'
 
+from zope.configuration.fields import GlobalInterface
+from zope.configuration.fields import GlobalObject
+from zope.configuration.fields import MessageID
+from zope.configuration.fields import Path
+from zope.configuration.fields import Tokens
 from zope.interface import Interface
-from zope.schema import NativeStringLine, TextLine
-from zope.configuration.fields import GlobalInterface, GlobalObject
-from zope.configuration.fields import Path, MessageID, Tokens
+from zope.schema import NativeStringLine
+from zope.schema import TextLine
 
 
 class IOnlineHelpTopicDirective(Interface):

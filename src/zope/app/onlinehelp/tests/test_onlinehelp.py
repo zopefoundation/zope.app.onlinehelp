@@ -14,20 +14,20 @@
 """Test OnlineHelp
 
 """
-import re
 import os
+import re
 import unittest
 from doctest import DocTestSuite
 
-from zope.interface import Interface, implementer
-from zope.configuration import xmlconfig
 import zope.traversing
 from zope.component import testing
-
+from zope.configuration import xmlconfig
+from zope.interface import Interface
+from zope.interface import implementer
 from zope.testing import renormalizing
 
-from zope.app.onlinehelp import onlinehelptopic
 from zope.app.onlinehelp import onlinehelp
+from zope.app.onlinehelp import onlinehelptopic
 
 
 class I1(Interface):
@@ -87,8 +87,9 @@ class TestOnlineHelpNamespace(unittest.TestCase):
         self.assertIsNone(getattr(globalhelp, 'context', None))
 
     def test_cannot_pickle(self):
-        from zope.app.onlinehelp import helpNamespace
         import pickle
+
+        from zope.app.onlinehelp import helpNamespace
 
         traversed = helpNamespace(self).traverse(None, None)
         self.assertRaises(TypeError,

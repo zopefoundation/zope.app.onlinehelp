@@ -15,13 +15,13 @@
 """
 __docformat__ = 'restructuredtext'
 
-from zope.component import createObject, getMultiAdapter
-
+from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
+from zope.component import createObject
+from zope.component import getMultiAdapter
 from zope.publisher.browser import BrowserView
 from zope.publisher.interfaces.browser import IBrowserView
-from zope.traversing.api import getName, getParent
-
-from zope.app.pagetemplate.viewpagetemplatefile import ViewPageTemplateFile
+from zope.traversing.api import getName
+from zope.traversing.api import getParent
 
 from zope.app.onlinehelp import getTopicFor
 

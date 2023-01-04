@@ -15,7 +15,9 @@
 
 """
 import os
+
 import zope.app.onlinehelp.tests
+
 
 here = os.path.dirname(zope.app.onlinehelp.tests.__file__)
 input_dir = os.path.join(here, 'input')

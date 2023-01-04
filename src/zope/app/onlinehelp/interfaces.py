@@ -18,13 +18,14 @@ These are the interfaces designed for the `OnlineHelp` system.
 """
 __docformat__ = 'restructuredtext'
 
-from zope.schema import TextLine, SourceText, Choice
+import zope.i18nmessageid
+from zope.app.file.interfaces import IFile
+from zope.app.publication.interfaces import IFileContent
 from zope.configuration.fields import GlobalInterface
 from zope.container.interfaces import IContainer
-from zope.app.publication.interfaces import IFileContent
-from zope.app.file.interfaces import IFile
-
-import zope.i18nmessageid
+from zope.schema import Choice
+from zope.schema import SourceText
+from zope.schema import TextLine
 
 
 _ = zope.i18nmessageid.MessageFactory("zope")

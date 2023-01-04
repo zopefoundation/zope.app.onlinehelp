@@ -15,18 +15,18 @@
 
 """
 import os
-
 import unittest
 
-from zope import component
+from zope.app.component.testing import PlacefulSetup
 from zope.pagetemplate.tests.util import check_xml
 from zope.publisher.browser import TestRequest
-from zope.app.component.testing import PlacefulSetup
-from zope.app.onlinehelp.tests import util
+
+from zope import component
+from zope.app.onlinehelp.browser.tree import OnlineHelpTopicTreeView
 from zope.app.onlinehelp.interfaces import IOnlineHelp
 from zope.app.onlinehelp.onlinehelp import OnlineHelp
 from zope.app.onlinehelp.onlinehelptopic import OnlineHelpTopic
-from zope.app.onlinehelp.browser.tree import OnlineHelpTopicTreeView
+from zope.app.onlinehelp.tests import util
 
 
 def testdir():

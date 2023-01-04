@@ -19,7 +19,8 @@ __docformat__ = 'restructuredtext'
 from zope.component import getUtility
 from zope.i18n import translate
 from zope.publisher.browser import BrowserView
-from zope.traversing.api import getPath, joinPath
+from zope.traversing.api import getPath
+from zope.traversing.api import joinPath
 
 from zope.app.onlinehelp.interfaces import IOnlineHelp
 
