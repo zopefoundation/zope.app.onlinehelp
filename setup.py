@@ -31,7 +31,7 @@ def read(*rnames):
 
 
 setup(name='zope.app.onlinehelp',
-      version='5.0.dev0',
+      version='5.0',
       author='Zope Foundation and Contributors',
       author_email='zope-dev@zope.org',
       description='Framework for Context-Sensitive Help Pages',
